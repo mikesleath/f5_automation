@@ -12,7 +12,7 @@
     - ../credentials/f5_credentials.yaml
 
   tasks:
-  - name: Create VIP
+  - name: Create VIP using AS3
     uri:
       url: https://3.10.147.142/mgmt/shared/appsvcs/declare
       user: "{{ bigip_user }}"
