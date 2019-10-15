@@ -1,0 +1,26 @@
+---
+- name: DEPLOY AS3 NAME
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+
+  vars:
+    uri_method: POST
+
+  vars_files:
+    - ../credentials/f5_credentials.yaml
+
+  tasks:
+  - name: Create VIP
+    uri:
+      url: https://3.10.147.142/mgmt/shared/appsvcs/declare
+      user: "{{ bigip_user }}"
+      password: "{{ bigip_pass }}"
+      method: "{{ uri_method }}"
+      body: "{{ lookup('file','as3_vip_create.json') }}"
+      force_basic_auth: yes
+      status_code: 200
+      body_format: json
+      validate_certs: False
+...
